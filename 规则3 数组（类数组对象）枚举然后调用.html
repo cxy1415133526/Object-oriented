@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 规则③： 数组（类数组对象）枚举然后调用，上下文是数组 -->
+    <script>
+    var arr=[10,2,function(){
+        console.log(this[0]);
+        
+    }];
+
+    // 规则3：数组枚举然后调用，函数中的this就是数组
+    arr[2]();   //10
+
+ 
+    // 规则2，函数直接加圆括号调用,,上下文是window 
+    var fun=arr[2];
+    fun();     //undefined
+</script>
+</body>
+</html>

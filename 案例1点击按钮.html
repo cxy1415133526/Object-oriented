@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 360px;
+            border: 1px solid rgb(216, 187, 24);
+            margin-bottom: 10px;
+            padding: 20px;
+        }
+
+        button {
+            width: 60px;
+            height: 40px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        // 定义一个“组合”类。自己管理自己，它就是一个类。它最大的优点就是自治，不影响别人。
+        function Zuhe() {
+            // 信号量，自己这个图片的序号
+            this.a = 0;
+            // 调用自己的初始化方法
+            this.init();
+            // 调用自己的添加监听方法
+            this.bindEvent();
+        }
+        // 初始化
+        Zuhe.prototype.init = function () {
+            // 创建一个box
+            this.box = document.createElement('div');
+            // 添加类名
+            this.box.className = 'box';
+
+            // box中的内容
+            var str = [
+                '    <button disabled>-</button>',
+                '    <img src="images/0.png">',
+                '    <button>+</button>'
+            ].join("");
+
+            // 让box中添加str
+            this.box.innerHTML = str;
+            // 让app中添加box
+            document.getElementById('app').appendChild(this.box);
+
+            // 得到内部元素
+            this.btn1 = this.box.getElementsByTagName('button')[0];
+            this.btn2 = this.box.getElementsByTagName('button')[1];
+            this.img = this.box.getElementsByTagName('img')[0];
+        }
+        // 添加监听
+        Zuhe.prototype.bindEvent = function () {
+            // 备份this
+            var self = this;
+            // 自己的减号，注意添加监听是给自己的减号添加监听
+            this.btn1.onclick = function () {
+                // 改变自己这个对象的a属性，它影响别人么？不影响！！
+                self.a--;
+                // 改变自己这个对象的img这个DOM的src属性，不影响别人！！
+                self.img.src = 'images/' + self.a + '.png';
+                // 点击了键号，自己的加号一定要恢复能点
+                self.btn2.disabled = false;
+                // 如果自己的a是0了，那么就不能点击
+                if (self.a == 0) {
+                    self.btn1.disabled = true;
+                }
+            }
+            // 自己的加号，注意添加监听是给自己的加号添加监听
+            this.btn2.onclick = function () {
+                // 改变自己这个对象的a属性，它影响别人么？不影响！！
+                self.a++;
+                // 改变自己这个对象的img这个DOM的src属性，不影响别人！！
+                self.img.src = 'images/' + self.a + '.png';
+                // 点击了加号，自己的减号一定要恢复能点
+                self.btn1.disabled = false;
+                // 如果自己的a是2了，那么就不能点击
+                if (self.a == 2) {
+                    self.btn2.disabled = true;
+                }
+            }
+        }
+
+        new Zuhe();
+        new Zuhe();
+        new Zuhe();
+        new Zuhe();
+        new Zuhe();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 360px;
+            margin-bottom: 10px;
+            border: 1px solid #000;
+            background-color: rgba(229, 255, 0, 0.89);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            width: 60px;
+            height: 60px;
+            color: cadetblue;
+            font-size: 36px;
+        }
+        button:hover{
+            color: red;
+        }
+        button:disabled{
+            color: #3333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        function Zuhe() {
+            this.a = 0;
+            this.init();
+            this.blindEvent();
+        }
+        Zuhe.prototype.init = function () {
+            this.box = document.createElement('div');
+            this.box.className = 'box';
+           this.box.innerHTML=`
+                <button disabled>-</button>
+                <img src="images/0.png">
+                <button>+</button>
+           `
+            document.getElementById('app').appendChild(this.box);
+
+            this.btn1=this.box.getElementsByTagName('button')[0];
+            this.btn2=this.box.getElementsByTagName('button')[1];
+            this.img=this.box.getElementsByTagName('img')[0];
+        }
+        Zuhe.prototype.blindEvent=function(){
+            var self=this;
+            this.btn1.onclick=function(){
+                self.a--;
+                self.img.src='images/'+self.a+'.png';
+                self.btn2.disabled=false;
+                if(self.a==0){
+                    self.btn1.disabled=true;
+                }
+            }
+            this.btn2.onclick=function(){
+                self.a++;
+                self.img.src='images/'+self.a+'.png';
+                self.btn1.disabled=false;
+                if(self.a==2){
+                    self.btn2.disabled=true;
+                }
+            }
+        }
+        new Zuhe();
+        new Zuhe();
+        new Zuhe();
+        new Zuhe();
+        new Zuhe();
+    </script>
+</body>
+
+</html>

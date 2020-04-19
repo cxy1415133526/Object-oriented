@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 规则③： 数组（类数组对象）枚举然后调用，上下文是数组 -->
+    <script>
+        var arr = [ 0, 1, function(){
+            console.log(this[1]);
+            
+        } ]
+
+        // 规则3：数组枚举然后调用，函数中的this就是数组
+
+        arr[2]();
+
+        // 规则2，函数直接加圆括号调用
+        var fn=arr[2];
+        fn();
+    </script>
+</body>
+
+</html>

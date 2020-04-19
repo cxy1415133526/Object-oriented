@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- JS规定用new调用一个函数是一个特殊的写法，那么它会执行四步走。
+四步走：
+① 秘密创建一个空白对象{}
+② 函数的this指向这个对象
+③ 执行函数
+④ 返回这个this -->
+
+    <script>
+        // function fun(){
+        //    this.a=1;
+        //    this.b=2;            
+        // }
+        // var o=new fun();
+
+//         用new调用一个函数，哪怕这个函数中没有return，也有得到一个对象。
+// 这就是new的函数，new表示动词“产生新的”。
+        // console.log(o);
+// **********************************************************************
+
+// 把用new调用的函数我们叫做“构造函数”，首字母习惯上要大写
+          
+        //   function People(name,age,sex){
+        //     this.name=name;
+        //     this.age=age;
+        //     this.sex=sex;
+        //   }
+        //   var xiaoming=new People('小明',12,'男');
+        //   var xiaohong=new People('小红',14,'女');
+
+        //   console.log(xiaoming);      
+        //   console.log(xiaohong);
+//   ********************************************************        
+          
+          function Car(color,brand,engine,gearbox,country){
+              this.color=color;
+              this.brand=brand;
+              this.engine=engine;
+              this.gearbox=gearbox;
+              this.country=country;
+              if(this.country=='中国'){
+                  this.type='国产车'
+              }else{
+                  this.type='进口车'
+              }
+          }
+
+          var che1=new Car('红色','宝马','1.8T','自动挡','德国');
+          var che2=new Car('红色','中华','3.8T','手自一体','中国');
+          console.log(che1);
+          console.log(che1.type);
+          
+          console.log(che2);
+          console.log(che2.type);
+          
+          
+    </script>
+</body>
+</html>

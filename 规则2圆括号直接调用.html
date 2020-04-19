@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 函数的上下文判断规则2  - 圆括号直接调用，上下文是window对象 -->
+    <script>
+        var obj={
+            a:1,
+            b:2,
+            fun:function(){
+                console.log(this.a+this.b);
+                
+            }
+        };
+        // 全局变量就是window的属性，即window.a就是8，window.b就是9
+        var a=10;
+        var b=10;
+        // 提炼fun函数，单独提出来
+            var fun=obj.fun;
+
+            // 圆括号直接调用，this就是window对象，JS规定全局变量都是window的属性
+            fun();       //20
+
+            // 对象打点调用，this就是那个对象
+            obj.fun();      //3
+    </script>
+</body>
+</html>

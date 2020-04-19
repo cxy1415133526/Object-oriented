@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+    <script>
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+
+        function fun() {
+            // 备份上下文，这里的this是触发事件的DOM元素。
+
+            var self = this;
+            setTimeout(function () {
+
+                // 在定时器中，this是window对象，所以不能使用this了，
+                // 必须使用我们备份了的self对象。
+
+                self.style.backgroundColor = 'red';
+            }, 1000)
+
+
+        }
+
+        box1.onclick = fun;
+        box2.onclick = fun;
+        box3.onclick = fun;
+
+
+
+    </script>
+</body>
+
+</html>

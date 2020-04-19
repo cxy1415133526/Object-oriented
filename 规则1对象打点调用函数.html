@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 函数的上下文判断规则1 - 对象打点调用函数，this就是这个对象 -->
+    <script>
+        function fun() {
+            return this.yuwen + this.shuxue + this.yingyu;
+            // console.log(this.yuwen+this.shuxue+this.yingyu);
+            
+        }
+        var xiaoming = {
+            yuwen: 98,
+            shuxue: 86,
+            yingyu: 99,
+              fun: fun
+        };
+        // var total = xiaoming.fun;  //不加（）表示把函数单独提炼出来 ，这样输出的就是fun函数
+        // console.log(total);
+        var total = xiaoming.fun();  
+        console.log(total);
+        
+      
+        
+
+
+       
+
+
+
+    </script>
+</body>
+
+</html>

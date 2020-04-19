@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .t1 {
+            background-color: skyblue;
+        }
+
+        .t2 {
+            background-color: palevioletred;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            <input type="text" id="kuang">
+            <button id="tj_btn">添加</button>
+        </p>
+        <ul id="list"></ul>
+      
+    </div>
+
+    <script>
+        // 主功能类
+        function Main() {
+            this.tj_btn = document.getElementById('tj_btn');
+            this.kuang = document.getElementById('kuang');
+            // 备份this
+            var self = this;
+            this.tj_btn.onclick = function () {
+                // 实例化一个条，参数就是你填写的title属性
+                new Tiao(self.kuang.value);
+                // 让kuang清空
+                self.kuang.value = '';
+                self.kuang.value='';
+            }
+
+
+        }
+        // 条类
+        function Tiao(title) {
+            // 自己的标题
+            this.title = title;
+            // 自己的信号量，自己这个条是否在编辑状态
+            this.isEditing = false;
+            // 调用初始化方法
+            this.init();
+            // 调用绑定监听方法
+            this.bindEvent();
+        }
+        Tiao.prototype.init = function () {
+            // 创建自己的DOM
+            this.box = document.createElement('li');
+            this.box.innerHTML = `
+                <input value="${this.title}" style='display:none;'>
+                <span>${this.title}</span>
+                <button class="t1">编辑</button>
+                <button>删除</button>
+            `;
+            list.appendChild(this.box);
+            // 得到DOM
+            this.btn1 = this.box.getElementsByTagName('button')[0];
+            this.btn2 = this.box.getElementsByTagName('button')[1];
+            this.span = this.box.getElementsByTagName('span')[0];
+            this.kuang = this.box.getElementsByTagName('input')[0];
+        }
+
+        Tiao.prototype.bindEvent = function () {
+            // 备份
+            var self = this;
+            // 点击编辑按钮
+            this.btn1.onclick = function () {
+                // 看自己是否处于编辑状态
+                if (!self.isEditing) {
+                    // 让自己变为编辑状态
+                    self.isEditing = true;
+                    // span隐藏
+                    self.span.style.display = 'none';
+                    // 文本框显示
+                    self.kuang.style.display = 'inline-block';
+                    // 改变按钮的文字
+                    self.btn1.innerHTML = '确定';
+                    self.btn1.className = 't2'
+                    self.kuang.focus();
+                    self.kuang.value='';
+
+                } else {
+                    self.isEditing = false;
+                    // 改变title
+                    self.title = self.kuang.value;
+                    // 改变span中的字
+                    self.span.innerHTML = self.title;
+                    // span显示
+                    self.span.style.display = 'inline-block';
+                    // 文本框隐藏
+                    self.kuang.style.display = 'none';
+                    // 改变按钮文字
+                    self.btn1.innerHTML = '编辑';
+                    self.btn1.className = 't1';
+                    
+                }
+            }
+            // 删除按钮
+            this.btn2.onclick = function () {
+                self.box.parentNode.removeChild(self.box);
+            }
+        }
+
+
+        new Main();
+    </script>
+</body>
+
+</html>
