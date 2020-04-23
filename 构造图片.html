@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        //声明一个类
+        function Pic(path){
+            //函数上下文指向一个空对象,给空对象添加一个属性dom
+            this.dom=document.createElement('img');
+            app.appendChild(this.dom);
+            this.dom.src=path;
+
+        }
+       var zero=new Pic('images/0.png');
+    </script>
+</body>
+</html>

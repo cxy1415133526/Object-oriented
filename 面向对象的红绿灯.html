@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            position: relative;
+            width: 341px;
+            height: 890px;
+            border: 1px solid #000;
+            background: url(images/timg.jpg);
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="timg"></div> -->
+    <script>
+        function Deng() {
+            this.singal = 0;
+            this.init();
+            this.bindEvent();
+
+        }
+        Deng.prototype.init = function () {
+            this.dom = document.createElement('div');
+            document.body.appendChild(this.dom);
+          
+
+
+        }
+        Deng.prototype.bindEvent = function () {            
+            var self = this;
+            this.dom.onclick = function () {
+                self.singal++;
+                if (self.singal > 2) {
+                    self.singal = 0;
+                }
+                this.style.backgroundPosition = -self.singal * 341 + 'px 0px';
+            }
+        }
+        new Deng();
+        new Deng();
+    </script>
+</body>
+
+</html>

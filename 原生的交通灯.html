@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            position: relative;
+            width: 341px;
+            height: 890px;
+            background: url(images/timg.jpg);
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="timg"></div>
+    <script>
+        var timg=document.querySelector('div');
+        var singal=0;
+        timg.onclick=function(){
+            singal++;
+            if(singal>2){
+                singal=0;
+            }
+            //将数据反映在timg的身上
+            this.style.backgroundPosition=-singal*341+'px 0px';
+        }
+    </script>
+</body>
+</html>
