@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 341px;
+            height: 890px;
+            background: url(images/timg.jpg);
+        }
+    </style>
+</head>
+<div id="app"></div>
+
+<body>
+    <script>
+        function Deng() {
+            this.init();
+            this.bindEvent();
+            this.singal = 0;
+        }
+        Deng.prototype.init = function () {
+            this.box = document.createElement('div');
+            this.box.className = 'box';
+            app.appendChild(this.box);
+        }
+        var lock = true;
+        app.onmousemove = function () {
+            lock = false;
+        }
+        app.onmouseout = function () {
+            lock = true;
+        }
+        Deng.prototype.bindEvent = function () {
+            var self = this;
+            setInterval(function () {
+
+                if (!lock) return;
+                self.singal++;
+                if (self.singal > 2) {
+                    self.singal = 0;
+                }
+                self.box.style.backgroundPosition = -self.singal * 341 + 'px 0px';
+
+            }, 1000)
+
+        }
+
+
+        new Deng();
+    </script>
+</body>
+
+</html>
